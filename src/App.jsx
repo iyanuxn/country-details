@@ -1,8 +1,10 @@
-import React from "react";
-
-function App() {
-  return <div className="text-gray-400 font-bold text-2xl"
-  >App</div>;
+import Navbar from "./components/Navbar"
+const App = () => {
+  return (
+    <>
+      <Navbar />
+    </>
+  )
 }
 
-export default App;
+export default App
