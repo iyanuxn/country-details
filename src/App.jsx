@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
+import Body from "./components/indexContent";
 const App = () => {
   const [dark, setDark] = useState(false);
   const toggleDark = () => {
@@ -8,7 +9,8 @@ const App = () => {
 
   return (
     <div className={dark ? "dark" : ""}>
-      <Navbar dark={dark} toggleDark={toggleDark} />
+      <Navbar toggleDark={toggleDark} />
+      <Body />
     </div>
   );
 };
