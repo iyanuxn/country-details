@@ -1,10 +1,16 @@
-import Navbar from "./components/Navbar"
+import { useState } from "react";
+import Navbar from "./components/Navbar";
 const App = () => {
-  return (
-    <>
-      <Navbar />
-    </>
-  )
-}
+  const [dark, setDark] = useState(false);
+  const toggleDark = () => {
+    setDark(!dark);
+  };
 
-export default App
+  return (
+    <div className={dark ? "dark" : ""}>
+      <Navbar dark={dark} toggleDark={toggleDark} />
+    </div>
+  );
+};
+
+export default App;
