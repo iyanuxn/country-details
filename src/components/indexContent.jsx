@@ -24,6 +24,7 @@ const indexContent = () => {
               <div>i'm aanananann option</div>
               <div>i'm aanananann option</div>
               <div>i'm aanananann option</div>
+              <div>I was created to save streaks</div>
             </div>
           </div>
         </div>
