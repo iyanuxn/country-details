@@ -5,7 +5,11 @@ const indexContent = () => {
   const [dropdown, setDropdown] = useState("hidden");
 
   const handleDropdown = () => {
-    setDropdown("flex")
+    if (dropdown === "hidden") {
+      setDropdown("flex");
+    } else {
+      setDropdown("hidden");
+    }
   };
 
   return (
@@ -28,7 +32,10 @@ const indexContent = () => {
               <span className="text-slate-800 font-semibold w-full">
                 Filter by Region
               </span>
-              <BsChevronDown />
+              {dropdown === "hidden" ? (
+                <BsChevronDown className="transition duration-300 ease-in-out" />
+              ) : (
+                <BsChevronDown className="rotate-180 transition duration-300 ease-in-" />              )}
             </button>
             <div
               className={`flex-col absolute mt-9 bg-white shadow-md rounded-md px-5 py-3 gap-3 items-center w-full fade-in-regular ${dropdown}`}
