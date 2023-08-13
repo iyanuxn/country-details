@@ -5,3 +5,20 @@
 body {
   font-family: "Nunito Sans", sans-serif;
 }
+
+.fade-in-regular {
+  animation: fade-in 0.2s ease-in-out;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
