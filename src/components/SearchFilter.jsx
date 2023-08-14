@@ -89,13 +89,13 @@ const SearchFilter = ({ onRegionSelect, onSearch }) => {
       <div className="relative">
         <div
           ref={dropdownRef}
-          className="flex flex-col w-max items-center text-sm text-slate-800 bg-white px-5 py-3 gap-5 shadow-md rounded-md dark:bg-slate-700 dark:text-white"
+          className="flex flex-col w-64 items-center  text-sm text-slate-800 bg-white px-5 py-3 gap-5 shadow-md rounded-md dark:bg-slate-700 dark:text-white"
         >
           <button
             className="flex justify-between items-center gap-10  w-full"
             onClick={handleDropdown}
           >
-            <span className="font-semibold w-full">{selectedRegionText}</span>
+            <span className="font-semibold text-start w-full">{selectedRegionText}</span>
             {dropdown === "hidden" ? (
               <BsChevronDown className="transition duration-300 ease-in-out" />
             ) : (
@@ -103,7 +103,7 @@ const SearchFilter = ({ onRegionSelect, onSearch }) => {
             )}
           </button>
           <div
-            className={`flex-col absolute mt-9 bg-white shadow-md rounded-md py-2 items-center w-full fade-in-regular overflow-hidden dark:bg-slate-700 dark:text-white ${dropdown}`}
+            className={`flex-col absolute mt-10 bg-white shadow-md rounded-md py-2 items-center w-64 fade-in-regular overflow-hidden dark:bg-slate-700 dark:text-white ${dropdown}`}
           >
             {region.map((regionName, index) => (
               <button
@@ -114,12 +114,14 @@ const SearchFilter = ({ onRegionSelect, onSearch }) => {
                 {regionName}
               </button>
             ))}
-            <button
-              className={`w-full text-left px-5 py-2 hover:bg-gray-100 dark:hover:bg-slate-600 transition duration-300 ease-in-out`}
-              onClick={handleClearFilters}
-            >
-              Clear Filters
-            </button>
+            {selectedRegionText !== "Filter by Region" && (
+              <button
+                className={`w-full text-red-500 text-left px-5 py-2 hover:bg-gray-100 dark:hover:bg-slate-600 transition duration-300 ease-in-out`}
+                onClick={handleClearFilters}
+              >
+                Clear Filters
+              </button>
+            )}
           </div>
         </div>
       </div>

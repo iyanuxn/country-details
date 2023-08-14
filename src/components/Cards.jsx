@@ -18,7 +18,10 @@ const Cards = ({ selectedRegion, searchInput }) => {
     if (selectedRegion && country.region !== selectedRegion) {
       return false;
     }
-    if (searchInput && !country.name.common.toLowerCase().includes(searchInput.toLowerCase())) {
+    if (
+      searchInput &&
+      !country.name.common.toLowerCase().includes(searchInput.toLowerCase())
+    ) {
       return false;
     }
     return true;
@@ -31,14 +34,31 @@ const Cards = ({ selectedRegion, searchInput }) => {
   const filteredCountries = countries.filter(filterCountries);
 
   return (
-    <div className="card-container">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
       {filteredCountries.map((country, index) => (
-        <div key={index} className="card">
-          <img src={country.flags.png} alt={`${country.name.common} flag`} />
-          <h2>{country.name.common}</h2>
-          <p>Population: {country.population}</p>
-          <p>Region: {country.region}</p>
-          <p>Capital: {country.capital}</p>
+        <div
+          key={index}
+          className="bg-white text-slate-800 dark:bg-slate-700 dark:text-white rounded-md shadow-md overflow-hidden"
+        >
+          <img
+            src={country.flags.png}
+            alt={`${country.name.common} flag`}
+            className="object-cover h-40 w-full"
+          />
+          <div className="px-6 py-5">
+            <h2 className="text-xl font-bold mb-3">{country.name.common}</h2>
+            <div className="text-sm gap-1 flex flex-col">
+              <p>
+                <b>Population:</b> {country.population}
+              </p>
+              <p>
+                <b>Region:</b> {country.region}
+              </p>
+              <p>
+                <b>Capital:</b> {country.capital}
+              </p>
+            </div>
+          </div>
         </div>
       ))}
     </div>

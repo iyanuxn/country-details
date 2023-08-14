@@ -9,8 +9,11 @@ const App = () => {
 
   return (
     <div className={dark ? "dark" : ""}>
-      <Navbar toggleDark={toggleDark} />
-      <Body />
+      <div className="bg-gray-100 dark:bg-slate-800 min-h-screen h-full">
+        {" "}
+        <Navbar toggleDark={toggleDark} />
+        <Body />
+      </div>
     </div>
   );
 };
