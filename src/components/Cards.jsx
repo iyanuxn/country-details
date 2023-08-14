@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import CountryDetails from "./CountryDetails";
 
-const Cards = ({ selectedRegion, searchInput }) => {
+const Cards = ({ selectedRegion, searchInput, onCardClick }) => {
   const [countries, setCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [showCountryDetails, setShowCountryDetails] = useState(false);
 
   const fetchCountries = () => {
     fetch("https://restcountries.com/v3.1/all")
@@ -36,18 +33,13 @@ const Cards = ({ selectedRegion, searchInput }) => {
 
   const filteredCountries = countries.filter(filterCountries);
 
-  const handleCardClick = (country) => {
-    setSelectedCountry(country);
-    setShowCountryDetails(true);
-  };
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-12 px-6 md:px-0 cursor-pointer">
       {filteredCountries.map((country, index) => (
         <div
           key={index}
           className="bg-white text-slate-800 dark:bg-slate-700 dark:text-white rounded-md shadow-md overflow-hidden"
-          onClick={() => handleCardClick(country)}
+          onClick={() => onCardClick(country)} // Call the onCardClick handler
         >
           <img
             src={country.flags.png}
@@ -72,12 +64,6 @@ const Cards = ({ selectedRegion, searchInput }) => {
           </div>
         </div>
       ))}
-      {showCountryDetails && (
-        <CountryDetails
-          country={selectedCountry}
-          onClose={() => setShowCountryDetails(false)}
-        />
-      )}
     </div>
   );
 };
