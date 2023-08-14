@@ -3,6 +3,7 @@ import { BsSearch, BsChevronDown } from "react-icons/bs";
 
 const SearchFilter = ({ onRegionSelect, onSearch }) => {
   const [dropdown, setDropdown] = useState("hidden");
+  const [zIndex, setZIndex] = useState("-z-10");
   const [region, setRegion] = useState([]);
   const [selectedRegionText, setSelectedRegionText] =
     useState("Filter by Region");
@@ -38,6 +39,9 @@ const SearchFilter = ({ onRegionSelect, onSearch }) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setDropdown(false);
       setAnimation("fade-out-regular");
+      setTimeout(() => {
+        setZIndex("-z-10");
+      }, 100);
     }
   };
 
@@ -51,10 +55,14 @@ const SearchFilter = ({ onRegionSelect, onSearch }) => {
   const handleDropdown = () => {
     if (!dropdown) {
       setDropdown(true);
+      setZIndex("z-10");
       setAnimation("fade-in-regular");
     } else {
       setDropdown(false);
       setAnimation("fade-out-regular");
+      setTimeout(() => {
+        setZIndex("-z-10");
+      }, 100);
     }
   };
 
@@ -110,13 +118,13 @@ const SearchFilter = ({ onRegionSelect, onSearch }) => {
             )}
           </button>
           <div
-            className={`flex-col absolute left-0 mt-8 md:mt-10 bg-white shadow-md rounded-md py-2 items-center w-64 overflow-hidden dark:bg-slate-700 dark:text-white ${dropdown} ${animation}`}
+            className={`flex-col absolute left-0 mt-8 md:mt-10 bg-white shadow-md rounded-md py-2 items-center w-64 overflow-hidden dark:bg-slate-700 dark:text-white ${dropdown} ${animation} ${zIndex}`}
           >
             {region.map((regionName, index) => (
               <button
                 className={`w-full text-left px-5 py-2 hover:bg-gray-100 dark:hover:bg-slate-600 transition duration-300 ease-in-out`}
                 key={index}
-                onClick={() => handleRegionSelect(regionName)}
+                onClick={dropdown ? () => handleRegionSelect(regionName) : null}
               >
                 {regionName}
               </button>
@@ -124,7 +132,7 @@ const SearchFilter = ({ onRegionSelect, onSearch }) => {
             {selectedRegionText !== "Filter by Region" && (
               <button
                 className={`w-full text-red-500 text-left px-5 py-2 hover:bg-gray-100 dark:hover:bg-slate-600 transition duration-300 ease-in-out`}
-                onClick={handleClearFilters}
+                onClick={dropdown ? handleClearFilters : null}
               >
                 Clear Filters
               </button>
