@@ -37,7 +37,7 @@ const Body = () => {
   return (
     <div className="relative flex flex-col gap-7 md:gap-14 px-5 md:px-16 py-10">
       {selectedCountry && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div className="fixed inset-0 z-20  flex items-center justify-center">
           <CountryDetails
             country={selectedCountry}
             onClose={handleCardClose}
