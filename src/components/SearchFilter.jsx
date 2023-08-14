@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { BsSearch, BsChevronDown } from "react-icons/bs";
 
-const indexContent = () => {
+const SearchFilter = ({ onRegionSelect, onSearch }) => {
   const [dropdown, setDropdown] = useState("hidden");
   const [region, setRegion] = useState([]);
+  const [selectedRegionText, setSelectedRegionText] = useState("Filter by Region");
+  const [searchInput, setSearchInput] = useState("");
 
   const dropdownRef = useRef(null);
 
@@ -51,6 +53,27 @@ const indexContent = () => {
     }
   };
 
+  const handleRegionSelect = (selectedRegion) => {
+    if (selectedRegion === "") {
+      setSelectedRegionText("Filter by Region");
+    } else {
+      setSelectedRegionText(selectedRegion);
+    }
+    onRegionSelect(selectedRegion);
+    setDropdown("hidden");
+  };
+
+  const handleClearFilters = () => {
+    setSelectedRegionText("Filter by Region");
+    onRegionSelect("");
+    setDropdown("hidden");
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchInput(event.target.value);
+    onSearch(event.target.value);
+  };
+
   return (
     <div className="flex justify-between items-center">
       <div className="flex w-max items-center text-sm bg-white px-5 py-3 gap-5 shadow-md rounded-md dark:bg-slate-700 dark:text-white">
@@ -59,6 +82,8 @@ const indexContent = () => {
           type="text"
           className="w-72 outline-none bg-transparent"
           placeholder="Search for a country..."
+          value={searchInput}
+          onChange={handleSearchChange}
         />
       </div>
       <div className="relative">
@@ -70,7 +95,7 @@ const indexContent = () => {
             className="flex justify-between items-center gap-10  w-full"
             onClick={handleDropdown}
           >
-            <span className="font-semibold w-full">Filter by Region</span>
+            <span className="font-semibold w-full">{selectedRegionText}</span>
             {dropdown === "hidden" ? (
               <BsChevronDown className="transition duration-300 ease-in-out" />
             ) : (
@@ -80,14 +105,21 @@ const indexContent = () => {
           <div
             className={`flex-col absolute mt-9 bg-white shadow-md rounded-md py-2 items-center w-full fade-in-regular overflow-hidden dark:bg-slate-700 dark:text-white ${dropdown}`}
           >
-            {region.map((region, index) => (
+            {region.map((regionName, index) => (
               <button
-                className="w-full text-left px-5 py-2 hover:bg-gray-100 dark:hover:bg-slate-600 transition duration-300 ease-in-out"
+                className={`w-full text-left px-5 py-2 hover:bg-gray-100 dark:hover:bg-slate-600 transition duration-300 ease-in-out`}
                 key={index}
+                onClick={() => handleRegionSelect(regionName)}
               >
-                {region}
+                {regionName}
               </button>
             ))}
+            <button
+              className={`w-full text-left px-5 py-2 hover:bg-gray-100 dark:hover:bg-slate-600 transition duration-300 ease-in-out`}
+              onClick={handleClearFilters}
+            >
+              Clear Filters
+            </button>
           </div>
         </div>
       </div>
@@ -95,4 +127,4 @@ const indexContent = () => {
   );
 };
 
-export default indexContent;
+export default SearchFilter;
