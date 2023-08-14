@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
-import Body from "./components/indexContent";
+import Body from "./components/Body";
 const App = () => {
   const [dark, setDark] = useState(false);
   const toggleDark = () => {
