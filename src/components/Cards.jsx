@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const Cards = ({ selectedRegion, searchInput, onCardClick }) => {
   const [countries, setCountries] = useState([]);
-
+  
   const fetchCountries = () => {
     fetch("https://restcountries.com/v3.1/all")
       .then((response) => response.json())
@@ -39,7 +39,7 @@ const Cards = ({ selectedRegion, searchInput, onCardClick }) => {
         <div
           key={index}
           className="bg-white text-slate-800 dark:bg-slate-700 dark:text-white rounded-md shadow-md overflow-hidden"
-          onClick={() => onCardClick(country)} // Call the onCardClick handler
+          onClick={() => onCardClick(country)}
         >
           <img
             src={country.flags.png}

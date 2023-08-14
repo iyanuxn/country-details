@@ -1,8 +1,14 @@
+// CountryDetails.js
 import React from "react";
 
-const CountryDetails = ({ country }) => {
+const CountryDetails = ({ country, onClose, className }) => {
   return (
-    <div className="bg-white text-slate-800 dark:bg-slate-700 dark:text-white rounded-md shadow-md px-6 py-5">
+    <div
+      className={`bg-white w-screen h-screen text-slate-800 dark:bg-slate-700 dark:text-white rounded-md shadow-md px-6 py-5 ${className}`}
+    >
+      <button className="mb-5 text-sm font-semibold" onClick={() => onClose()}>
+        Close
+      </button>
       <img
         src={country.flags.png}
         alt={`${country.name.common} flag`}
@@ -19,7 +25,6 @@ const CountryDetails = ({ country }) => {
         <p>
           <b>Capital:</b> {country.capital}
         </p>
-        {/* Add more details as needed */}
       </div>
     </div>
   );
