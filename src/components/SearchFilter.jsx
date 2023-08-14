@@ -4,8 +4,10 @@ import { BsSearch, BsChevronDown } from "react-icons/bs";
 const SearchFilter = ({ onRegionSelect, onSearch }) => {
   const [dropdown, setDropdown] = useState("hidden");
   const [region, setRegion] = useState([]);
-  const [selectedRegionText, setSelectedRegionText] = useState("Filter by Region");
+  const [selectedRegionText, setSelectedRegionText] =
+    useState("Filter by Region");
   const [searchInput, setSearchInput] = useState("");
+  const [animation, setAnimation] = useState("fade-in-regular");
 
   const dropdownRef = useRef(null);
 
@@ -34,7 +36,8 @@ const SearchFilter = ({ onRegionSelect, onSearch }) => {
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setDropdown("hidden");
+      setDropdown(false);
+      setAnimation("fade-out-regular");
     }
   };
 
@@ -46,10 +49,12 @@ const SearchFilter = ({ onRegionSelect, onSearch }) => {
   }, []);
 
   const handleDropdown = () => {
-    if (dropdown === "hidden") {
-      setDropdown("flex");
+    if (!dropdown) {
+      setDropdown(true);
+      setAnimation("fade-in-regular");
     } else {
-      setDropdown("hidden");
+      setDropdown(false);
+      setAnimation("fade-out-regular");
     }
   };
 
@@ -95,15 +100,17 @@ const SearchFilter = ({ onRegionSelect, onSearch }) => {
             className="flex justify-between items-center gap-10 w-full"
             onClick={handleDropdown}
           >
-            <span className="font-semibold text-start w-full">{selectedRegionText}</span>
-            {dropdown === "hidden" ? (
+            <span className="font-semibold text-start w-full">
+              {selectedRegionText}
+            </span>
+            {!dropdown ? (
               <BsChevronDown className="transition duration-300 ease-in-out" />
             ) : (
               <BsChevronDown className="rotate-180 transition duration-300 ease-in-" />
             )}
           </button>
           <div
-            className={`flex-col absolute left-0 mt-8 md:mt-10 bg-white shadow-md rounded-md py-2 items-center w-64 fade-in-regular overflow-hidden dark:bg-slate-700 dark:text-white ${dropdown}`}
+            className={`flex-col absolute left-0 mt-8 md:mt-10 bg-white shadow-md rounded-md py-2 items-center w-64 overflow-hidden dark:bg-slate-700 dark:text-white ${dropdown} ${animation}`}
           >
             {region.map((regionName, index) => (
               <button
