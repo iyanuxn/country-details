@@ -75,12 +75,12 @@ const SearchFilter = ({ onRegionSelect, onSearch }) => {
   };
 
   return (
-    <div className="flex justify-between items-center">
-      <div className="flex w-max items-center text-sm bg-white px-5 py-3 gap-5 shadow-md rounded-md dark:bg-slate-700 dark:text-white">
+    <div className="flex flex-col gap-10 md:flex-row md:justify-between md:items-center">
+      <div className="flex items-center text-sm bg-white px-5 py-3 gap-5 shadow-md rounded-md dark:bg-slate-700 dark:text-white">
         <BsSearch />
         <input
           type="text"
-          className="w-72 outline-none bg-transparent"
+          className="w-full md:w-72 outline-none bg-transparent"
           placeholder="Search for a country..."
           value={searchInput}
           onChange={handleSearchChange}
@@ -89,10 +89,10 @@ const SearchFilter = ({ onRegionSelect, onSearch }) => {
       <div className="relative">
         <div
           ref={dropdownRef}
-          className="flex flex-col w-64 items-center  text-sm text-slate-800 bg-white px-5 py-3 gap-5 shadow-md rounded-md dark:bg-slate-700 dark:text-white"
+          className="flex flex-col w-44 md:w-64 items-center text-xs  md:text-sm text-slate-800 bg-white px-5 py-3 md:gap-5 shadow-md rounded-md dark:bg-slate-700 dark:text-white"
         >
           <button
-            className="flex justify-between items-center gap-10  w-full"
+            className="flex justify-between items-center gap-10 w-full"
             onClick={handleDropdown}
           >
             <span className="font-semibold text-start w-full">{selectedRegionText}</span>
@@ -103,7 +103,7 @@ const SearchFilter = ({ onRegionSelect, onSearch }) => {
             )}
           </button>
           <div
-            className={`flex-col absolute mt-10 bg-white shadow-md rounded-md py-2 items-center w-64 fade-in-regular overflow-hidden dark:bg-slate-700 dark:text-white ${dropdown}`}
+            className={`flex-col absolute left-0 mt-8 md:mt-10 bg-white shadow-md rounded-md py-2 items-center w-64 fade-in-regular overflow-hidden dark:bg-slate-700 dark:text-white ${dropdown}`}
           >
             {region.map((regionName, index) => (
               <button
