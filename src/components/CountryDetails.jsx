@@ -37,82 +37,80 @@ const CountryDetails = ({ country, onClose, className, onBorderClick }) => {
 
   return (
     <div
-      className={`bg-white min-h-screen gap-16 flex flex-col w-screen h-screen text-slate-800 dark:bg-slate-700 dark:text-white rounded-md shadow-md px-16 pt-32 pb-10 overflow-y-auto ${className}`}
+      className={`bg-white min-h-screen gap-8 md:gap-16 flex flex-col w-screen h-screen text-slate-800 dark:bg-slate-800 dark:dark:text-slate-100 rounded-md shadow-md pt-28 px-5 md:px-16 md:pt-32 pb-10 overflow-y-auto ${className}`}
     >
       <button
-        className="w-max text-sm font-semibold flex items-center gap-2 justify-center border border-slate-100 rounded-md px-8 py-2 shadow-md"
+        className="w-max text-xs md:text-sm font-semibold flex items-center gap-2 justify-center dark:bg-slate-700 border border-slate-100 dark:border-none  rounded-md px-4 md:px-8 py-2 shadow-md"
         onClick={() => onClose()}
       >
         <BsArrowLeft />
         Back
       </button>
-      <div className="flex flex-row h-max justify-between">
+      <div className="flex flex-col md:flex-row h-max justify-between">
         <img
           src={country.flags.png}
           alt={`${country.name.common} flag`}
-          className="object-cover w-[40vw] h-[50vh]  border-slate-300 border"
+          className="object-cover md:w-[40vw] md:h-[50vh] h-[30vh]  border-slate-300 border dark:border-none"
         />
-        <div className="flex flex-col gap-3 w-1/2 justify-center text-slate-800">
+        <div className="flex flex-col mt-10 md:mt-0 gap-3 md:w-1/2 justify-center text-slate-800 dark:text-slate-100">
           <h2 className="text-3xl font-bold mb-3">{country.name.common}</h2>
-          <div className="grid grid-cols-2 gap-8">
-            <div className="flex flex-col gap-2 font-bold">
-              <p>
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
+            <div className="flex flex-col gap-2.5 font-bold">
+              <div className="flex flex-row gap-2">
                 <span>Native Name: </span>
                 <span className="font-normal">
                   <span>
                     {
-                      country.name.nativeName[
-                        Object.keys(country.name.nativeName)[0]
-                      ].common
+                      country.name.nativeName[Object.keys(country.name.nativeName)[0]].common
                     }
                   </span>
                 </span>
-              </p>
-              <p>
+              </div>
+              <div className="flex flex-row gap-2">
                 <span>Population:</span>{" "}
                 <span className="font-normal">{country.population}</span>
-              </p>
-              <p>
+              </div>
+              <div className="flex flex-row gap-2">
                 <span>Region:</span>{" "}
                 <span className="font-normal">{country.region}</span>
-              </p>
-              <p>
+              </div>
+              <div className="flex flex-row gap-2">
                 <span>Sub Region:</span>{" "}
                 <span className="font-normal">{country.subregion}</span>
-              </p>
-              <p>
+              </div>
+              <div className="flex flex-row gap-2">
                 <span>Capital:</span>{" "}
                 <span className="font-normal">{country.capital}</span>
-              </p>
+              </div>
             </div>
-            <div className="flex flex-col gap-2 font-bold">
-              <p>
+            <div className="flex flex-col gap-2.5 font-bold">
+              <div className="flex flex-row gap-2">
                 <span>Top Level Domain:</span>{" "}
                 <span className="font-normal">{country.tld.join(", ")}</span>
-              </p>
-              <p>
+              </div>
+              <div className="flex flex-row gap-2">
                 <span>Currencies:</span>{" "}
                 <span className="font-normal">
                   {country.currencies[Object.keys(country.currencies)[0]].name}
                 </span>
-              </p>
-              <p>
+              </div>
+              <div className="flex flex-row gap-2">
                 <span>Languages:</span>{" "}
                 <span className="font-normal">
                   {Object.values(country.languages).join(", ")}
                 </span>
-              </p>
+              </div>
             </div>
           </div>
-          <div className="flex items-center mt-10 w-full">
-            <div className="font-bold w-1/4">
+          <div className="flex flex-col md:gap-0 gap-4 md:flex-row md:items-center mt-10">
+            <div className="font-bold md:w-1/4">
               <span>Border Countries:</span>
             </div>
-            <div className="flex flex-wrap justify-start w-10/12 gap-2">
+            <div className="flex flex-wrap justify-start md:w-10/12 gap-2">
               {borders.map((borderCountry, index) => (
                 <button
                   key={index}
-                  className="text-sm border rounded-md px-5 py-2 shadow-md border-slate-100 hover:bg-gray-200 transition duration-300 ease-in-out"
+                  className="text-sm border rounded-md px-5 py-2 shadow-md dark:border-none dark:bg-slate-700 dark:hover:bg-slate-600 border-slate-100 hover:bg-gray-200 transition duration-300 ease-in-out"
                   onClick={() => {
                     onBorderClick(borderCountry);
                   }}

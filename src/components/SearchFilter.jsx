@@ -89,7 +89,7 @@ const SearchFilter = ({ onRegionSelect, onSearch }) => {
 
   return (
     <div className="flex flex-col gap-10 md:flex-row md:justify-between md:items-center">
-      <div className="flex items-center text-sm bg-white px-5 py-3 gap-5 shadow-md rounded-md dark:bg-slate-700 dark:text-white">
+      <div className="flex items-center text-sm bg-white px-5 py-3 gap-5 shadow-md rounded-md dark:bg-slate-700 dark:dark:text-slate-100">
         <BsSearch />
         <input
           type="text"
@@ -102,7 +102,7 @@ const SearchFilter = ({ onRegionSelect, onSearch }) => {
       <div className="relative">
         <div
           ref={dropdownRef}
-          className="flex flex-col w-44 md:w-64 items-center text-xs  md:text-sm text-slate-800 bg-white px-5 py-3 md:gap-5 shadow-md rounded-md dark:bg-slate-700 dark:text-white"
+          className="flex flex-col w-44 md:w-64 items-center text-xs  md:text-sm text-slate-800 bg-white px-5 py-3 md:gap-5 shadow-md rounded-md dark:bg-slate-700 dark:dark:text-slate-100"
         >
           <button
             className="flex justify-between items-center gap-10 w-full"
@@ -118,7 +118,7 @@ const SearchFilter = ({ onRegionSelect, onSearch }) => {
             )}
           </button>
           <div
-            className={`flex-col absolute left-0 mt-8 md:mt-10 bg-white shadow-md rounded-md py-2 items-center w-64 overflow-hidden dark:bg-slate-700 dark:text-white ${dropdown} ${animation} ${zIndex}`}
+            className={`flex-col absolute left-0 mt-8 md:mt-10 bg-white shadow-md rounded-md py-2 items-center w-64 overflow-hidden dark:bg-slate-700 dark:dark:text-slate-100 ${dropdown} ${animation} ${zIndex}`}
           >
             {region.map((regionName, index) => (
               <button

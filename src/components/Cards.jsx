@@ -39,7 +39,7 @@ const Cards = ({ selectedRegion, searchInput, onCardClick }) => {
       {filteredCountries.map((country, index) => (
         <div
           key={index}
-          className="bg-white text-slate-800 dark:bg-slate-700 dark:text-white rounded-md shadow-md overflow-hidden"
+          className="bg-white text-slate-800 dark:bg-slate-700 dark:dark:text-slate-100 rounded-md shadow-md overflow-hidden"
           onClick={() =>{
             onCardClick(country);
           }}
