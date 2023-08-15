@@ -8,6 +8,7 @@ const Cards = ({ selectedRegion, searchInput, onCardClick }) => {
       .then((response) => response.json())
       .then((data) => {
         setCountries(data);
+        // console.log(data);
       })
       .catch((error) => {
         console.error("Error fetching countries:", error);
@@ -39,7 +40,9 @@ const Cards = ({ selectedRegion, searchInput, onCardClick }) => {
         <div
           key={index}
           className="bg-white text-slate-800 dark:bg-slate-700 dark:text-white rounded-md shadow-md overflow-hidden"
-          onClick={() => onCardClick(country)}
+          onClick={() =>{
+            onCardClick(country);
+          }}
         >
           <img
             src={country.flags.png}

@@ -26,6 +26,23 @@ const Body = () => {
     document.body.style.overflow = "hidden";
   };
 
+  const handleBorderClick = (borderCountry) => {
+    fetchCountryfromName(borderCountry);
+  };
+
+  // FIXME: Prolly network?
+
+  const fetchCountryfromName = (countryName) => {
+    fetch(`https://restcountries.com/v3.1/name/${countryName}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setSelectedCountry(data[0]);
+      })
+      .catch((error) => {
+        console.error("Error fetching country:", error);
+      });
+  };
+
   const handleCardClose = () => {
     setAnimation("slide-out-regular");
     setTimeout(() => {
@@ -35,13 +52,14 @@ const Body = () => {
   };
 
   return (
-    <div className="relative flex flex-col gap-7 md:gap-14 px-5 md:px-16 py-10">
+    <div className="relative flex flex-col gap-7 md:gap-14 px-5 md:px-16 py-32">
       {selectedCountry && (
         <div className="fixed inset-0 z-20  flex items-center justify-center">
           <CountryDetails
             country={selectedCountry}
             onClose={handleCardClose}
             className={animation}
+            onBorderClick={handleBorderClick}
           />
         </div>
       )}
